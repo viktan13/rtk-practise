@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Counter from "./components/Counter";
+import './App.css'
+import {connect} from "react-redux";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
+const App = (props) => {
+    return (
+        <div className={"App"}>
+          <h1>Counter</h1>
+            <h2>Version: {props.version}</h2>
+          <Counter />
+        </div>
+    );
+};
+const mapStateToProps = state => ({
+    version: state.counter.version
+})
+export default connect(mapStateToProps)(App);
